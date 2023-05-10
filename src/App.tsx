@@ -34,7 +34,7 @@ function App()
       <div className="App-Body">
         {page()}
       </div>
-      <NavBar onClick={setCurrentPage} />
+      <NavBar onClick={setCurrentPage} currentPage={currentPage}/>
     </div>
   );
 }

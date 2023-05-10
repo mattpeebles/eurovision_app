@@ -1,5 +1,7 @@
 .footer {
-    height: 50px;
+    min-height: 30px;
+    max-height: 30px;
+    text-align: center;
     background-color: #001489;
     font-variant: small-caps;
     display: flex;
@@ -9,7 +11,15 @@
     align-content: space-between;
 }
 
+.footer:hover{
+    cursor: pointer;
+}
 
 .button {
+    flex-grow: 1;
+}
+
+.selected {
+    font-style: italic;
     flex-grow: 1;
 }

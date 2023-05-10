@@ -7,18 +7,42 @@ type NavBarProps = {
     currentPage?: Pages,
 }
 
-export default function NavBar({onClick, currentPage}: NavBarProps){
+export default function NavBar({ onClick, currentPage }: NavBarProps)
+{
+
     return (
         <div className="footer">
-            <div className="button" onClick={() => onClick(Pages.Songs)}>
-                Songs
-            </div>
-            <div className="button"  onClick={() => onClick(Pages.Stats)}>
-                Stats
-            </div>
-            <div className="button"  onClick={() => onClick(Pages.Account)}>
-                Account
-            </div>
+            <NavButton
+                isSelected={currentPage == Pages.Songs}
+                page={Pages.Songs}
+                onClick={onClick}
+                text="Songs" />
+            <NavButton
+                isSelected={currentPage == Pages.Stats}
+                page={Pages.Stats}
+                onClick={onClick}
+                text="Stats" />
+            <NavButton
+                isSelected={currentPage == Pages.Account}
+                page={Pages.Account}
+                onClick={onClick}
+                text="Account" />
+        </div>
+    )
+}
+
+type NavButtonProps = {
+    isSelected: boolean,
+    page: Pages,
+    onClick: Dispatch<SetStateAction<Pages>>,
+    text: string
+}
+
+function NavButton({ isSelected, page, onClick, text }: NavButtonProps)
+{
+    return (
+        <div className={isSelected ? 'selected' : 'button'} onClick={() => onClick(page)}>
+            {text}
         </div>
     )
 }
