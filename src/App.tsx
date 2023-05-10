@@ -2,7 +2,7 @@ import React, { useState, useCallback, useEffect } from 'react';
 import logo from './logo.svg';
 import Header from './components/header/Header';
 import './App.css';
-import ParticipantList from './components/participant_list/ParticipantList';
+import SongList from './components/song_list/SongList';
 import Account from './pages/account/Account'
 import NavBar from './components/nav_bar/NavBar';
 import { Pages } from './enums/Pages';
@@ -22,7 +22,7 @@ function App()
     switch (currentPage)
     {
       case Pages.Songs:
-        return <ParticipantList />;
+        return <SongList />;
       case Pages.Account:
         return <Account name={'Matt'} setIsLoggedIn={setIsLoggedIn}/>
         case Pages.Stats:

@@ -1,8 +1,9 @@
-type Participant = {
+type Song = {
+    id: string,
     country: string,
     artist: string,
     flag: string,
     artistWiki: string,
-    song: string,
+    title: string,
     songUri: string 
 }
