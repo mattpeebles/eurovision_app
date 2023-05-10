@@ -1,15 +1,21 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import logo from './logo.svg';
 import Header from './components/header/Header';
 import './App.css';
 import ParticipantList from './components/participant_list/ParticipantList';
+import Account from './pages/account/Account'
 import NavBar from './components/nav_bar/NavBar';
 import { Pages } from './enums/Pages';
+import Login from './pages/login/Login';
 
 function App()
 {
   const [currentPage, setCurrentPage] = useState(Pages.Login)
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(true);
+
+  useEffect(() => {
+      setCurrentPage(isLoggedIn ? Pages.Songs : Pages.Login);
+  }, [isLoggedIn])
 
   const page = useCallback(() =>
   {
@@ -18,11 +24,11 @@ function App()
       case Pages.Songs:
         return <ParticipantList />;
       case Pages.Account:
-        return <div>Account</div>
+        return <Account name={'Matt'} setIsLoggedIn={setIsLoggedIn}/>
         case Pages.Stats:
         return <div>Stats</div>
         case Pages.Login:
-          return <div>Login</div>
+          return <Login setLoggedIn={() => setIsLoggedIn(true)}/>
         default:
         return <div>Unknown</div>
     }
@@ -34,7 +40,8 @@ function App()
       <div className="App-Body">
         {page()}
       </div>
-      <NavBar onClick={setCurrentPage} currentPage={currentPage}/>
+
+      {isLoggedIn && <NavBar onClick={setCurrentPage} currentPage={currentPage}/>}
     </div>
   );
 }
