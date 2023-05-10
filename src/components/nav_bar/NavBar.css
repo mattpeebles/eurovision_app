@@ -1,0 +1,15 @@
+.footer {
+    height: 50px;
+    background-color: #001489;
+    font-variant: small-caps;
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    color: #FFDD00;
+    align-content: space-between;
+}
+
+
+.button {
+    flex-grow: 1;
+}

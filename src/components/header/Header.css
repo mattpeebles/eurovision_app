@@ -1,0 +1,13 @@
+.header{
+    height: 50px;
+    background-color: #001489;
+    font-variant: small-caps;
+    display: flex;
+    flex-direction: row;
+    padding: 5px;
+    color: #FFDD00;
+}
+
+.grow{
+    flex-grow: 1;
+}
