@@ -1,5 +1,5 @@
-import React from 'react';
-import Flags from '../utils/flags';
+import React, { useState, useEffect } from 'react';
+import getFlagForCountry from '../utils/flags';
 import './Song.css'; 
 import Link from './link/Link'
 
@@ -9,7 +9,8 @@ type SongProps = {
 
 export default function Song({ participant }: SongProps)
 {
-    const { song, country, artist, songUri} = participant;
+    const { song, country, artist, songUri, flag} = participant;
+    
     return (
         <div className='card'>
             <div className='row'>
@@ -20,7 +21,7 @@ export default function Song({ participant }: SongProps)
             </div>
             <div className='row'>
                 <div>
-                    <img className='flag' src={Flags.finland} alt="logo" /> {country}
+                    <img className='flag' src={getFlagForCountry(flag)} alt="logo" /> {country}
                 </div>
                 <div className='grow'/>
                 <div>
