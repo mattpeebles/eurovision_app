@@ -12,6 +12,7 @@ type SongProps = {
 export default function Song({ song, score }: SongProps)
 {
     const { id, title, country, artist, songUri, flag } = song;
+    
     return (
         <div className='card'>
             <div className='row'>

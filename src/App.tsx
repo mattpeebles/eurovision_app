@@ -7,6 +7,7 @@ import Account from './pages/account/Account'
 import NavBar from './components/nav_bar/NavBar';
 import { Pages } from './enums/Pages';
 import Login from './pages/login/Login';
+import Stats from './pages/stats/Stats';
 
 function App()
 {
@@ -26,7 +27,7 @@ function App()
       case Pages.Account:
         return <Account name={'Matt'} setIsLoggedIn={setIsLoggedIn}/>
         case Pages.Stats:
-        return <div>Stats</div>
+        return <Stats />
         case Pages.Login:
           return <Login setLoggedIn={() => setIsLoggedIn(true)}/>
         default:
