@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import getFlagForCountry from '../utils/flags';
 import './Song.css';
 import Link from './link/Link'
-import PointFlag from './point_flag/PointFlag'
+import PointFlagDropdown from './dropdown/PointFlagDropdown';
 
 type SongProps = {
     song: Song,
@@ -19,8 +19,10 @@ export default function Song({ song, score }: SongProps)
                     {title}
                 </div>
                 <div className='grow' />
-                
-                {score?.score != null && <PointFlag score={score.score} />}
+                <PointFlagDropdown 
+                    currentPoints={score?.score ?? 0}
+                    onChange={(newPoint: number) => null}
+                />
             </div>
             <div className='row'>
                 {artist}

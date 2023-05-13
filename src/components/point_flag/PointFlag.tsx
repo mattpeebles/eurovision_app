@@ -5,6 +5,7 @@ type PointFlagProps = {
 }
 
 const PointColors: {[point: number]: string} = {
+    0: 'red',
     1: 'red',
     2: 'red',
     3: 'red',
