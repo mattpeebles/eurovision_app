@@ -1,4 +1,32 @@
 # Replace this with your own GraphQL schema file!
 type Query {
-  field: String
-}
+    me: User
+    songs: [Song]
+    rankings: [Ranking]
+  }
+  type User {
+    id: String
+    first_name: String
+    last_name: String
+  }
+  type Country {
+    id: String
+    name: String
+  }
+  type Song {
+    id: String
+    country: String
+    artist: String
+    title: String
+    year: Int
+  }
+  type Score{
+    user: User
+    points: Int
+    song: Song
+  }
+  type Ranking {
+    song: Song
+    total: Int
+    scores: Score
+  }

@@ -36,9 +36,9 @@ ukraine,
 united_kingdom,
 }
 
-export default function getFlagForCountry(country: string): string {
-    const parsed = country.toLowerCase().replace(' ', '_');
-    if(!(parsed in flags)){
+export default function getFlagForCountry(country: string | null): string {
+    const parsed = country?.toLowerCase().replace(' ', '_');
+    if(parsed == null || !(parsed in flags)){
         return eu;
     }
 

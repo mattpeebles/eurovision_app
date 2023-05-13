@@ -3,15 +3,32 @@ import getFlagForCountry from '../utils/flags';
 import './Song.css';
 // import Link from './link/Link'
 import PointFlagDropdown from './dropdown/PointFlagDropdown';
+import graphql from 'babel-plugin-relay/macro';
+import { Song_Fragment$key } from './__generated__/Song_Fragment.graphql';
+import { useFragment } from 'react-relay';
 
 type SongProps = {
-    song: Song,
+    song: Song_Fragment$key,
     score?: Score
 }
 
+
+const SongFragment = graphql`
+  fragment Song_Fragment on Song {
+    title
+    artist
+    country
+  }
+`;
+
 export default function Song({ song, score }: SongProps)
 {
-    const { title, country, artist } = song;
+    const data = useFragment(
+        SongFragment,
+        song,
+      );
+
+    const { title, country, artist } = data;
     
     return (
         <div className='card'>

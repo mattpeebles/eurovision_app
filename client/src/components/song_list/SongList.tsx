@@ -1,19 +1,26 @@
 import React from 'react';
 import Song from '../Song';
-import Songs from '../../data/songs/2023';
+import graphql from "babel-plugin-relay/macro";
+import { useLazyLoadQuery } from "react-relay";
+import {SongList_Query} from './__generated__/SongList_Query.graphql'
+
 import './SongList.css';
-import Scores from '../../data/scores';
+
+const SongsQuery = graphql`
+  query SongList_Query {
+    songs {
+      ...Song_Fragment
+    }
+  }
+`;
 
 export default function SongList()
 {
-    const scores = Scores.reduce((scoreDict: {[songID: string]: Score}, score) => {
-        scoreDict[score.songID] = score;
-        return scoreDict;
-    }, {});
-
+    const data = useLazyLoadQuery<SongList_Query>(SongsQuery, {});
+    
     return (
         <div className='list'>
-            {Songs.map(song => <Song song={song} score={scores[song.id]}/>)}
+            {data.songs && data.songs.map(song => (song && <Song song={song}/>))}
         </div>
     );
 }
