@@ -24,7 +24,7 @@ export default function PointFlagDropdown({ currentPoints, onChange }: PointFlag
             <Dropdown
                 placeholder='Points'
                 children={availablePoints}
-                onChange={(val: number) => null}
+                onChange={onChange}
             />
         </div>
     )

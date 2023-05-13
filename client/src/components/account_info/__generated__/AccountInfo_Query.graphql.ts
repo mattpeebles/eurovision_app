@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<a96e584cc27d17f99189b1e258de346c>>
+ * @generated SignedSource<<c53c87e1482b29cd60c9e99fa4157d30>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -32,37 +32,38 @@ var v0 = [
 ],
 v1 = [
   {
-    "alias": null,
-    "args": [
-      {
-        "kind": "Variable",
-        "name": "userID",
-        "variableName": "userID"
-      }
-    ],
-    "concreteType": "User",
-    "kind": "LinkedField",
-    "name": "me",
-    "plural": false,
-    "selections": [
-      {
-        "alias": null,
-        "args": null,
-        "kind": "ScalarField",
-        "name": "name",
-        "storageKey": null
-      }
-    ],
-    "storageKey": null
+    "kind": "Variable",
+    "name": "userID",
+    "variableName": "userID"
   }
-];
+],
+v2 = {
+  "alias": null,
+  "args": null,
+  "kind": "ScalarField",
+  "name": "name",
+  "storageKey": null
+};
 return {
   "fragment": {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Fragment",
     "metadata": null,
     "name": "AccountInfo_Query",
-    "selections": (v1/*: any*/),
+    "selections": [
+      {
+        "alias": null,
+        "args": (v1/*: any*/),
+        "concreteType": "User",
+        "kind": "LinkedField",
+        "name": "me",
+        "plural": false,
+        "selections": [
+          (v2/*: any*/)
+        ],
+        "storageKey": null
+      }
+    ],
     "type": "Query",
     "abstractKey": null
   },
@@ -71,15 +72,35 @@ return {
     "argumentDefinitions": (v0/*: any*/),
     "kind": "Operation",
     "name": "AccountInfo_Query",
-    "selections": (v1/*: any*/)
+    "selections": [
+      {
+        "alias": null,
+        "args": (v1/*: any*/),
+        "concreteType": "User",
+        "kind": "LinkedField",
+        "name": "me",
+        "plural": false,
+        "selections": [
+          (v2/*: any*/),
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
+            "name": "id",
+            "storageKey": null
+          }
+        ],
+        "storageKey": null
+      }
+    ]
   },
   "params": {
-    "cacheID": "de31ed8eef55c68776579efe46fc9f79",
+    "cacheID": "01c02a3744c5fb0c71cc782ed744fe02",
     "id": null,
     "metadata": {},
     "name": "AccountInfo_Query",
     "operationKind": "query",
-    "text": "query AccountInfo_Query(\n  $userID: String!\n) {\n  me(userID: $userID) {\n    name\n  }\n}\n"
+    "text": "query AccountInfo_Query(\n  $userID: String!\n) {\n  me(userID: $userID) {\n    name\n    id\n  }\n}\n"
   }
 };
 })();

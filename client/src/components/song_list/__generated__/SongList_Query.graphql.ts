@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<8a2fcc83c4114176cbdd329d2fe42ee8>>
+ * @generated SignedSource<<5dc255aeee1604068d7902e44d11ced4>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -66,6 +66,13 @@ const node: ConcreteRequest = {
             "alias": null,
             "args": null,
             "kind": "ScalarField",
+            "name": "id",
+            "storageKey": null
+          },
+          {
+            "alias": null,
+            "args": null,
+            "kind": "ScalarField",
             "name": "title",
             "storageKey": null
           },
@@ -89,12 +96,12 @@ const node: ConcreteRequest = {
     ]
   },
   "params": {
-    "cacheID": "d79cc5103d3969ba01cd85724b4b20e6",
+    "cacheID": "9d0d44f83882e5b9f1dd3631018a688a",
     "id": null,
     "metadata": {},
     "name": "SongList_Query",
     "operationKind": "query",
-    "text": "query SongList_Query {\n  songs {\n    ...Song_Fragment\n  }\n}\n\nfragment Song_Fragment on Song {\n  title\n  artist\n  country\n}\n"
+    "text": "query SongList_Query {\n  songs {\n    ...Song_Fragment\n    id\n  }\n}\n\nfragment Song_Fragment on Song {\n  id\n  title\n  artist\n  country\n}\n"
   }
 };
 

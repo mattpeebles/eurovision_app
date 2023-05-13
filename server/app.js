@@ -22,6 +22,10 @@ async function main() {
       songs: [Song]
       rankings: [Ranking]
       users: [User]
+      userScores(userID: String!): [Score]
+    }
+    type Mutation {
+      ensureScore(songID: String!, userID: String!, points: Int!): Score
     }
     type User {
       id: String
@@ -39,14 +43,14 @@ async function main() {
       year: Int
     }
     type Score{
-      user: User
+      userID: String
       points: Int
-      song: Song
+      songID: String
     }
     type Ranking {
-      song: Song
+      songID: String
       total: Int
-      scores: Score
+      scores: [Score]
     }
   `)
   
@@ -61,10 +65,15 @@ async function main() {
   const userSchema = new mongoose.Schema({
     name: String
   })
+  const scoreSchema = new mongoose.Schema({
+    userID: String,
+    songID: String,
+    points: Number
+  })
   const connection = await mongoose.connect(connectionString);
   
   // The root provides a resolver function for each API endpoint
-  var root = {
+  const root = {
     me: async ({userID}) => {
       const User = connection.model('User', userSchema);
       return User.findById(userID);
@@ -76,6 +85,35 @@ async function main() {
     users: async () => {
       const User = connection.model('User', userSchema);
       return User.find();
+    },
+    userScores: async ({userID}) => {
+      const Score = connection.model('Score', scoreSchema);
+      return await Score.find({userID});
+    },
+    ensureScore: async ({userID, songID, points}) => {
+      const Score = connection.model('Score', scoreSchema);
+      await Score.findOneAndDelete({userID, points});
+      await Score.findOneAndDelete({userID, songID});
+      return await Score.create({userID, songID, points})
+    },
+    rankings: async () => {
+      const Score = connection.model('Score', scoreSchema);
+      const scores = await Score.find();
+      const info = {};
+
+      for(const score of scores){
+        const {songID} = score;
+
+        if(!(songID in info)){
+          info[songID] = {songID, total: 0, scores: []};
+        }
+
+        info[songID]['total'] += score.points;
+        info[songID]['scores'].push(score);
+      }
+      
+      console.log(Object.values(info))
+      return Object.values(info);
     }
   }
   app.use(cors())

@@ -1,32 +1,36 @@
 # Replace this with your own GraphQL schema file!
-type Query {
+  type Query {
     me(userID: String!) : User
     songs: [Song]
     rankings: [Ranking]
     users: [User]
+    userScores(userID: String!): [Score]
+  }
+  type Mutation {
+    ensureScore(songID: String!, userID: String!, points: Int!): Score
   }
   type User {
-    id: String
+    id: ID!
     name: String
   }
   type Country {
-    id: String
+    id: ID!
     name: String
   }
   type Song {
-    id: String
+    id: ID!
     country: String
     artist: String
     title: String
     year: Int
   }
   type Score{
-    user: User
+    userID: String
     points: Int
-    song: Song
+    songID: String
   }
   type Ranking {
-    song: Song
+    songID: String
     total: Int
-    scores: Score
+    scores: [Score]
   }

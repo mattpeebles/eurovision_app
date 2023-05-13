@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<4f91e13a7d70c98049ffc5277a87aecf>>
+ * @generated SignedSource<<86c2f0addcf5c8028f2124dfb8044aae>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -12,7 +12,7 @@ import { ConcreteRequest, Query } from 'relay-runtime';
 export type UserSelector_Query$variables = {};
 export type UserSelector_Query$data = {
   readonly users: ReadonlyArray<{
-    readonly id: string | null;
+    readonly id: string;
     readonly name: string | null;
   } | null> | null;
 };

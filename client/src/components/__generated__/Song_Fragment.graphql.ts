@@ -1,5 +1,5 @@
 /**
- * @generated SignedSource<<39cee7c6222ce2336e8712f5cf6a3777>>
+ * @generated SignedSource<<e912a4cd531bfa6d328f78bfb46d3bbb>>
  * @lightSyntaxTransform
  * @nogrep
  */
@@ -13,6 +13,7 @@ import { FragmentRefs } from "relay-runtime";
 export type Song_Fragment$data = {
   readonly artist: string | null;
   readonly country: string | null;
+  readonly id: string;
   readonly title: string | null;
   readonly " $fragmentType": "Song_Fragment";
 };
@@ -27,6 +28,13 @@ const node: ReaderFragment = {
   "metadata": null,
   "name": "Song_Fragment",
   "selections": [
+    {
+      "alias": null,
+      "args": null,
+      "kind": "ScalarField",
+      "name": "id",
+      "storageKey": null
+    },
     {
       "alias": null,
       "args": null,
@@ -53,6 +61,6 @@ const node: ReaderFragment = {
   "abstractKey": null
 };
 
-(node as any).hash = "fe232748054fac1fa1e85583a2e5f59d";
+(node as any).hash = "937830b571fcd726fb244abc81dc1754";
 
 export default node;

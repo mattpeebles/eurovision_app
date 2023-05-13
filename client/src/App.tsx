@@ -23,7 +23,7 @@ function App()
     switch (currentPage)
     {
       case Pages.Songs:
-        return <SongsPage />;
+        return <SongsPage userID={currentUser}/>;
       case Pages.Account:
         return <Account userID={currentUser} logoutUser={() => setCurrentUser('')}/>
         case Pages.Stats:
