@@ -1,7 +1,9 @@
 var express = require("express")
 var { graphqlHTTP } = require("express-graphql")
 var { buildSchema } = require("graphql")
+const mongoose = require('mongoose');
 var cors = require('cors')
+var Song = require('./schema/Song.js');
 
 const fake_db = {
   'User': {
