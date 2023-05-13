@@ -9,7 +9,7 @@ on:
       - main
     paths:
       - server/**
-      - .github/workflows/eurovision-server.yml
+      - .github/workflows/main_eurovision.yml
   workflow_dispatch:
 
 jobs:
