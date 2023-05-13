@@ -37,9 +37,10 @@ united_kingdom,
 }
 
 export default function getFlagForCountry(country: string): string {
-    if(!(country in flags)){
+    const parsed = country.toLowerCase().replace(' ', '_');
+    if(!(parsed in flags)){
         return eu;
     }
 
-    return flags[country];
+    return flags[parsed];
 }

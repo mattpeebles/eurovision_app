@@ -11,7 +11,7 @@ type SongProps = {
 
 export default function Song({ song, score }: SongProps)
 {
-    const { title, country, artist, flag } = song;
+    const { title, country, artist } = song;
     
     return (
         <div className='card'>
@@ -30,7 +30,7 @@ export default function Song({ song, score }: SongProps)
             </div>
             <div className='row'>
                 <div>
-                    <img className='flag' src={getFlagForCountry(flag)} alt="logo" /> {country}
+                    <img className='flag' src={getFlagForCountry(country)} alt="logo" /> {country}
                 </div>
                 <div className='grow' />
                 <div>
