@@ -166,6 +166,6 @@ app.use(
     graphiql: true,
   })
 )
-const port = process.env.port || 4000;
-app.listen(port)
+const port = process.env.PORT || 4000;
+app.listen(4000)
 console.log("Running a GraphQL API server at http://localhost:4000/graphql")
