@@ -1,23 +1,18 @@
 # Docs for the Azure Web Apps Deploy action: https://github.com/Azure/webapps-deploy
 # More GitHub Actions for Azure: https://github.com/Azure/actions
 
-name: Eurovision Server
+name: Build and deploy Node.js app to Azure Web App - eurovision
 
 on:
   push:
     branches:
       - main
-    paths:
-      - server/**
-      - .github/workflows/main_eurovision.yml
   workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: server
+
     steps:
       - uses: actions/checkout@v2
 
@@ -57,5 +52,5 @@ jobs:
         with:
           app-name: 'eurovision'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_94FCFF58F7F64CA6BD6EF9BD4F706426 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_5CB35EEB2DA94CF8A481D9A37B125F9C }}
           package: .
