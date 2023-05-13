@@ -12,11 +12,11 @@ import SongsPage from './pages/songs/Songs';
 function App()
 {
   const [currentPage, setCurrentPage] = useState(Pages.Login)
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
+  const [currentUser, setCurrentUser] = useState('');
 
   useEffect(() => {
-      setCurrentPage(isLoggedIn ? Pages.Songs : Pages.Login);
-  }, [isLoggedIn])
+      setCurrentPage(currentUser ? Pages.Songs : Pages.Login);
+  }, [currentUser])
 
   const page = useCallback(() =>
   {
@@ -25,11 +25,11 @@ function App()
       case Pages.Songs:
         return <SongsPage />;
       case Pages.Account:
-        return <Account name={'Matt'} setIsLoggedIn={setIsLoggedIn}/>
+        return <Account userID={currentUser} logoutUser={() => setCurrentUser('')}/>
         case Pages.Stats:
         return <Stats />
         case Pages.Login:
-          return <Login setLoggedIn={() => setIsLoggedIn(true)}/>
+          return <Login setLoggedIn={(userID: string) => setCurrentUser(userID)}/>
         default:
         return <div>Unknown</div>
     }
@@ -42,7 +42,7 @@ function App()
         {page()}
       </div>
 
-      {isLoggedIn && <NavBar onClick={setCurrentPage} currentPage={currentPage}/>}
+      {currentUser != '' && <NavBar onClick={setCurrentPage} currentPage={currentPage}/>}
     </div>
   );
 }

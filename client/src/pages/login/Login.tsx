@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { Suspense, useState } from 'react'
+import UserSelector from '../../user_selector/UserSelector'
 
 type LoginProps = {
-    setLoggedIn: () => any
+    setLoggedIn: (userID: string) => any
 }
 
-export default function Login({setLoggedIn}: LoginProps){
+export default function Login({setLoggedIn}: LoginProps){   
     return (
         <div>
-            <div onClick={setLoggedIn}>Login</div>
+            <Suspense>
+                <UserSelector onChange={setLoggedIn}/>
+            </Suspense>
         </div>
     )
 }

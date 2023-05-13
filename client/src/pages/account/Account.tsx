@@ -1,16 +1,19 @@
-import React, { Dispatch, SetStateAction } from 'react'
+import React, { Suspense } from 'react'
 import './Account.css'
+import AccountInfo from '../../components/account_info/AccountInfo'
 
 type AccountProps = {
-    name: string,
-    setIsLoggedIn: Dispatch<SetStateAction<boolean>>
+    userID: string,
+    logoutUser: () => void
 }
 
-export default function Account({name, setIsLoggedIn: logout}: AccountProps){
+export default function Account({userID, logoutUser}: AccountProps){
     return (
         <div>
-            {name}
-            <div onClick={() => logout(false)}>Logout</div>
+            <Suspense>
+                <AccountInfo userID={userID} />
+            </Suspense>
+            <div onClick={logoutUser}>Logout</div>
         </div>
     )
 }

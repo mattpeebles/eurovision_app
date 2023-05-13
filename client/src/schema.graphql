@@ -1,13 +1,13 @@
 # Replace this with your own GraphQL schema file!
 type Query {
-    me: User
+    me(userID: String!) : User
     songs: [Song]
     rankings: [Ranking]
+    users: [User]
   }
   type User {
     id: String
-    first_name: String
-    last_name: String
+    name: String
   }
   type Country {
     id: String
