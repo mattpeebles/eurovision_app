@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import getFlagForCountry from '../utils/flags';
 import './Song.css';
-import Link from './link/Link'
+// import Link from './link/Link'
 import PointFlagDropdown from './dropdown/PointFlagDropdown';
 
 type SongProps = {
@@ -11,7 +11,7 @@ type SongProps = {
 
 export default function Song({ song, score }: SongProps)
 {
-    const { id, title, country, artist, songUri, flag } = song;
+    const { title, country, artist, flag } = song;
     
     return (
         <div className='card'>

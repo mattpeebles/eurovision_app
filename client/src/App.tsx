@@ -1,5 +1,5 @@
 import React, { useState, useCallback, useEffect } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 import Header from './components/header/Header';
 import './App.css';
 import SongList from './components/song_list/SongList';

@@ -13,7 +13,7 @@ export default function PointFlagDropdown({ currentPoints, onChange }: PointFlag
     {
         return {
             componentFunc: () => <PointFlag score={point} />,
-            isSelected: point == currentPoints,
+            isSelected: point === currentPoints,
             val: point,
             key: point
         }

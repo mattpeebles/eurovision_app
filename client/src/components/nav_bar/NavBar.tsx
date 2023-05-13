@@ -13,17 +13,17 @@ export default function NavBar({ onClick, currentPage }: NavBarProps)
     return (
         <div className="footer">
             <NavButton
-                isSelected={currentPage == Pages.Songs}
+                isSelected={currentPage === Pages.Songs}
                 page={Pages.Songs}
                 onClick={onClick}
                 text="Songs" />
             <NavButton
-                isSelected={currentPage == Pages.Stats}
+                isSelected={currentPage === Pages.Stats}
                 page={Pages.Stats}
                 onClick={onClick}
                 text="Stats" />
             <NavButton
-                isSelected={currentPage == Pages.Account}
+                isSelected={currentPage === Pages.Account}
                 page={Pages.Account}
                 onClick={onClick}
                 text="Account" />
