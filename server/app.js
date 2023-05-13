@@ -15,26 +15,17 @@ var app = express();
 main().catch(err => console.log(err));
 
 async function main() {
-  const fake_db = {
-    'User': {
-      '1': {
-        id: 1,
-        first_name: "Matt",
-        last_name: "Peebles"
-      }
-    },
-  }
   // Construct a schema, using GraphQL schema language
   var schema = buildSchema(`
     type Query {
-      me: User
+      me(userID: String!): User
       songs: [Song]
       rankings: [Ranking]
+      users: [User]
     }
     type User {
       id: String
-      first_name: String
-      last_name: String
+      name: String
     }
     type Country {
       id: String
@@ -67,17 +58,25 @@ async function main() {
     artist: String,
     year: Number
   })
+  const userSchema = new mongoose.Schema({
+    name: String
+  })
   const connection = await mongoose.connect(connectionString);
   
   // The root provides a resolver function for each API endpoint
   var root = {
-    me: () => {
-      return fake_db['User']['1'];
+    me: async ({userID}) => {
+      const User = connection.model('User', userSchema);
+      return User.findById(userID);
     },
     songs: async () => {
       const Song = connection.model('Song', songSchema);
       return await Song.find();
     },
+    users: async () => {
+      const User = connection.model('User', userSchema);
+      return User.find();
+    }
   }
   app.use(cors())
 
