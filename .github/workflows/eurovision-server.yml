@@ -9,7 +9,7 @@ on:
       - main
     paths:
       - server/**
-      - .github/workflows/main_eurovision.yml
+      - .github/workflows/eurovision-server.yml
   workflow_dispatch:
 
 jobs:
@@ -17,7 +17,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: ./server
+        working-directory: server
     steps:
       - uses: actions/checkout@v2
 
