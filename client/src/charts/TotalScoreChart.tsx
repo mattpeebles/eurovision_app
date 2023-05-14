@@ -63,7 +63,7 @@ export default function TotalScoreChart()
     
     return (
         <ResponsiveContainer width="100%" >
-            <BarChart data={info} layout='vertical'>
+            <BarChart data={info.sort((a, b) => b.total - a.total)} layout='vertical'>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis type='number' />
                 <YAxis dataKey="country" type='category' width={120}/>
