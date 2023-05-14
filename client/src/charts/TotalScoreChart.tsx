@@ -1,17 +1,33 @@
 import React from 'react';
 import { BarChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend, Bar, ResponsiveContainer } from 'recharts';
-import Songs from '../data/songs/2023';
+import graphql from 'babel-plugin-relay/macro';
+import { useLazyLoadQuery } from 'react-relay';
+import { TotalScoreChart_Query } from './__generated__/TotalScoreChart_Query.graphql';
 // import { ValueType } from 'recharts/types/component/DefaultTooltipContent';
 
-// type Scores = {
-//     song: Song,
-//     total: number,
-//     points: {score: number, user: {name: string}}[]
-// }
+const RankingsQuery = graphql`
+  query TotalScoreChart_Query {
+    rankings {
+        songID
+        total
+        scores {
+            userID
+            points
+        }
+      }
+      songs {
+        country
+        title
+        artist
+        id
+      }
+  }
+`
 
 export default function TotalScoreChart()
 {
-    const data = Songs.map(x => {return {'country': x.country, 'score': 144, 'data': [{'Matt': 12}]}});
+    const data = useLazyLoadQuery<TotalScoreChart_Query>(RankingsQuery, {});
+    // const data = Songs.map(x => {return {'country': x.country, 'score': 144, 'data': [{'Matt': 12}]}});
 
     // const CustomTooltip = ({ active, payload, label }: TooltipProps<ValueType, string | number>) => {
     //     if (active && payload && payload.length) {
@@ -27,16 +43,34 @@ export default function TotalScoreChart()
     //     return null;
     //   };
 
+    
+    if(data?.rankings == null){
+        return <div></div>
+    }
+ 
+    const info = [];
+
+    for(const song of (data?.songs ?? [])){
+        console.log(data.songs)
+        info.push(
+            {
+                songID: song?.id ?? '',
+                country: song?.country ?? '',
+                total: data.rankings.filter(x => x?.songID === song?.id)[0]?.total ?? 0
+            }
+        )
+    }
+    
     return (
         <ResponsiveContainer width="100%" >
-            <BarChart data={data} layout='vertical'>
+            <BarChart data={info} layout='vertical'>
                 <CartesianGrid strokeDasharray="3 3" />
                 <XAxis type='number' />
                 <YAxis dataKey="country" type='category' width={120}/>
                 {/* <Tooltip content={<CustomTooltip />} /> */}
                 <Tooltip />
                 <Legend />
-                <Bar dataKey="score" fill="#8884d8" />
+                <Bar dataKey="total" fill="#8884d8" />
             </BarChart>
         </ResponsiveContainer>
     )

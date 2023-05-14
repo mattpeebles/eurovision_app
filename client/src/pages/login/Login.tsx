@@ -1,4 +1,4 @@
-import React, { Suspense, useState } from 'react'
+import React, { Suspense } from 'react'
 import UserSelector from '../../user_selector/UserSelector'
 
 type LoginProps = {

@@ -6,7 +6,7 @@ import {
   FetchFunction,
 } from "relay-runtime";
 
-const HTTP_ENDPOINT = "https://eurovision.azurewebsites.net/graphql";
+const HTTP_ENDPOINT = "http://localhost:3000/graphql";
 const fetchFn: FetchFunction = async (request, variables) => {
   const resp = await fetch(HTTP_ENDPOINT, {
     method: "POST",
